@@ -105,7 +105,7 @@
     ],
     # Libraries for GNU/Linux environment.
     'linux_ldflags': [
-      '-lc++',
+      '-lstdc++',
       '-pthread',
     ],
 
@@ -123,10 +123,10 @@
         'compiler_host_version_int': 304,  # Clang 3.4 or higher
       }],
       ['target_platform=="Linux"', {
-        'compiler_target': 'clang',
-        'compiler_target_version_int': 304,  # Clang 3.4 or higher
-        'compiler_host': 'clang',
-        'compiler_host_version_int': 304,  # Clang 3.4 or higher
+        'compiler_target': 'g++',
+        'compiler_target_version_int': 409,  # gcc 4.9 or higher
+        'compiler_host': 'g++',
+        'compiler_host_version_int': 304,  # gcc 4.9 or higher
       }],
     ],
   },
@@ -410,8 +410,8 @@
     ['target_platform=="Linux"', {
       'make_global_settings': [
         ['AR', '<!(which ar)'],
-        ['CC', '<!(which clang)'],
-        ['CXX', '<!(which clang++)'],
+        ['CC', '<!(command -v gcc)'],
+        ['CXX', '<!(command -v g++)'],
         ['LD', '<!(which ld)'],
         ['NM', '<!(which nm)'],
         ['READELF', '<!(which readelf)'],
