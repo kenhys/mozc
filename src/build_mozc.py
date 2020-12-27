@@ -672,7 +672,7 @@ def BuildWithNinja(options, targets):
 
   for target in targets:
     (_, target_name) = target.split(':')
-    RunOrDie([ninja, '-C', build_arg, target_name])
+    RunOrDie([ninja, '-v', '-C', build_arg, target_name])
 
 
 def BuildOnWindows(targets):
