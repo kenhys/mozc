@@ -96,7 +96,7 @@
         ['use_libprotobuf==1', {
           'link_settings': {
             'libraries': [
-              '-lprotobuf',
+              '-lprotobuf -latomic',
             ],
           },
         },
