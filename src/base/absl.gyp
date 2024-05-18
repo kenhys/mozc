@@ -46,7 +46,7 @@
         ['use_libabseil==1', {
           'link_settings': {
             'libraries': [
-              '-latomic -labsl_base -labsl_int128 -labsl_base -labsl_hash -labsl_city -labsl_flags_reflection -labsl_raw_hash_set -labsl_str_format_internal -labsl_throw_delegate -labsl_time_zone -labsl_hashtablez_sampler -labsl_synchronization -labsl_time -labsl_strings_internal -labsl_strings -labsl_spinlock_wait -labsl_status -labsl_statusor -labsl_flags_internal -labsl_flags_usage_internal -labsl_flags_marshalling -labsl_flags_parse',
+              '-latomic -labsl_base -labsl_int128 -labsl_base -labsl_hash -labsl_city -labsl_flags_reflection -labsl_raw_hash_set -labsl_str_format_internal -labsl_throw_delegate -labsl_time_zone -labsl_hashtablez_sampler -labsl_synchronization -labsl_time -labsl_strings_internal -labsl_strings -labsl_spinlock_wait -labsl_status -labsl_statusor -labsl_flags_internal -labsl_flags_usage_internal -labsl_flags_marshalling -labsl_flags_parse -labsl_string_view -labsl_raw_logging_internal',
             ],
           },
         },],
