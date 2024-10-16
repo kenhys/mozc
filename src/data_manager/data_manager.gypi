@@ -61,7 +61,7 @@
         '<(dataset_tag)_data_manager.cc',
       ],
       'dependencies': [
-        '<(mozc_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_dir)/base/absl.gyp:absl_base',
         '<(mozc_dir)/base/base.gyp:base',
         '<(mozc_dir)/data_manager/data_manager_base.gyp:data_manager',
         'gen_embedded_mozc_dataset_for_<(dataset_tag)#host',

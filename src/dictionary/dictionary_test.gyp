@@ -49,8 +49,7 @@
         'user_pos_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../config/config.gyp:config_handler',
         '../data_manager/testing/mock_data_manager.gyp:mock_data_manager',
@@ -76,8 +75,7 @@
         'suppression_dictionary_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_time',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../testing/testing.gyp:gtest_main',
         'dictionary_base.gyp:suppression_dictionary',

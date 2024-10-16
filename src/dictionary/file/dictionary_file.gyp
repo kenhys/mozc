@@ -38,7 +38,7 @@
       ],
       'dependencies': [
         'codec_util',
-        '../../base/absl.gyp:absl_status',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base_core',
       ],
     },
@@ -63,8 +63,7 @@
         'codec_util.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
-        '../../base/absl.gyp:absl_status',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base_core',
       ],
     },
@@ -77,8 +76,7 @@
       ],
       'dependencies': [
         'codec',
-        '../../base/absl.gyp:absl_strings',
-        '../../base/absl.gyp:absl_status',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base_core',
       ],
     },

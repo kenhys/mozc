@@ -36,10 +36,7 @@
         'config_handler_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
-        '../base/absl.gyp:absl_synchronization',
-        "../base/absl.gyp:absl_time",
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:clock',
         '../base/base_test.gyp:clock_mock',

@@ -113,7 +113,7 @@
             'win32_window_util.cc',
           ],
           'dependencies': [
-            '../../base/absl.gyp:absl_strings',
+            '../../base/absl.gyp:absl_base',
             '../../base/base.gyp:base',
             '../../config/config.gyp:config_handler',
             '../../protocol/protocol.gyp:commands_proto',
@@ -177,7 +177,7 @@
             'text_icon.cc',
           ],
           'dependencies': [
-            '../../base/absl.gyp:absl_strings',
+            '../../base/absl.gyp:absl_base',
             '../../base/base.gyp:base',
           ],
         },

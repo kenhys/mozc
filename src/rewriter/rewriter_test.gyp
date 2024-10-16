@@ -71,8 +71,7 @@
         'zipcode_rewriter_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
         '../base/base.gyp:serialized_string_array',
@@ -100,7 +99,7 @@
         'single_kanji_rewriter_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../data_manager/testing/mock_data_manager.gyp:mock_data_manager',
         '../session/session_base.gyp:request_test_util',

@@ -36,7 +36,7 @@
         'louds_test.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../testing/testing.gyp:gtest_main',
         'louds.gyp:louds',
       ],

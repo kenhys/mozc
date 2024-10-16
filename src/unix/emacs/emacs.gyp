@@ -39,7 +39,7 @@
         'mozc_emacs_helper.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
         '../../base/base.gyp:version',
         '../../config/config.gyp:config_handler',
@@ -57,7 +57,7 @@
         'client_pool.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
         '../../base/base.gyp:number_util',
         '../../client/client.gyp:client',
@@ -74,7 +74,7 @@
         'mozc_emacs_helper_lib_test.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../testing/testing.gyp:gtest_main',
         'mozc_emacs_helper_lib',
       ],

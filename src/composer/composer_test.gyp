@@ -45,7 +45,7 @@
         'table_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base_test.gyp:clock_mock',
         '../config/config.gyp:config_handler',
         '../data_manager/testing/mock_data_manager.gyp:mock_data_manager',
@@ -66,7 +66,7 @@
         'key_event_util_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../config/config.gyp:config_handler',
         '../testing/testing.gyp:gtest_main',

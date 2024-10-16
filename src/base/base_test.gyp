@@ -76,8 +76,7 @@
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
         '../testing/testing.gyp:mozctest',
-        'absl.gyp:absl_status',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
         'base.gyp:base',
         'base.gyp:codegen_bytearray_stream#host',
         'clock_mock',
@@ -94,7 +93,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',  # for util
         'base.gyp:url',
       ],
@@ -123,9 +122,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_random',
-        'absl.gyp:absl_strings',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
         'base.gyp:version',
       ],
@@ -154,7 +151,7 @@
         'clock_mock.cc'
       ],
       'dependencies': [
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -187,7 +184,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:japanese_util',
       ],
       'variables': {
@@ -203,7 +200,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
       ],
       'variables': {
@@ -219,7 +216,7 @@
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
         '../testing/testing.gyp:mozctest',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
         'base.gyp:number_util',
       ],
@@ -281,7 +278,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
       ],
       'variables': {
@@ -364,7 +361,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:multifile',
       ],
     },
@@ -437,7 +434,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base',
       ],
     },
@@ -449,8 +446,7 @@
       ],
       'dependencies': [
         '../testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_hash_testing',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base',
       ],
     },
