@@ -338,12 +338,12 @@
   'conditions': [
     ['target_platform=="Linux"', {
       'make_global_settings': [
-        ['AR', '<!(which ar)'],
+        ['AR', '<!(command -v ar)'],
         ['CC', '<!(command -v gcc)'],
         ['CXX', '<!(command -v g++)'],
-        ['LD', '<!(which ld)'],
-        ['NM', '<!(which nm)'],
-        ['READELF', '<!(which readelf)'],
+        ['LD', '<!(command -v ld)'],
+        ['NM', '<!(command -v nm)'],
+        ['READELF', '<!(command -v readelf)'],
       ],
     }],
   ],
