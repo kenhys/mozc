@@ -41,8 +41,7 @@
         'data_manager.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:serialized_string_array',
         '../base/base.gyp:version',
@@ -86,7 +85,7 @@
         'dataset_writer.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:obfuscator_support',
         'dataset_proto',
@@ -100,7 +99,7 @@
         'dataset_reader.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:obfuscator_support',
         'dataset_proto',
@@ -129,7 +128,7 @@
         'serialized_dictionary.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
         '../base/base.gyp:serialized_string_array',

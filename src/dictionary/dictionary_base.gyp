@@ -45,7 +45,7 @@
         'text_dictionary_loader.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:multifile',
         '../base/base.gyp:number_util',
@@ -111,7 +111,7 @@
         'user_pos.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
       ],
     },
@@ -157,7 +157,7 @@
         'suppression_dictionary.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
       ],
     },
@@ -174,9 +174,7 @@
         'user_dictionary_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
-        '../base/absl.gyp:absl_strings',
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:config_file_stream',
         '../base/base.gyp:number_util',

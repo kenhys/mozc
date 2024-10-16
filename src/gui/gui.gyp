@@ -55,7 +55,7 @@
         'base/window_title_modifier.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../dictionary/dictionary_base.gyp:user_dictionary',
         '../ipc/ipc.gyp:ipc',
         '../ipc/ipc.gyp:window_info_protocol',
@@ -299,7 +299,7 @@
         'config_dialog/roman_table_editor.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:config_file_stream',
         '../client/client.gyp:client',
@@ -387,7 +387,7 @@
         'dictionary_tool/zero_width_splitter.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../client/client.gyp:client',
         '../config/config.gyp:config_handler',
@@ -460,7 +460,7 @@
         'word_register_dialog/word_register_dialog_libmain.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../client/client.gyp:client',
         '../data_manager/data_manager.gyp:pos_list_provider',
@@ -821,7 +821,7 @@
         'base/encoding_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base_core',
       ],
     },
@@ -832,7 +832,7 @@
         'base/encoding_util_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../testing/testing.gyp:gtest_main',
         'encoding_util',
       ],

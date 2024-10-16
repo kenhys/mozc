@@ -41,7 +41,7 @@
         'session_converter.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:version',
         '../composer/composer.gyp:key_parser',
@@ -68,7 +68,7 @@
         'internal/key_event_transformer.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../composer/composer.gyp:composer',
         '../config/config.gyp:config_handler',
@@ -86,8 +86,7 @@
       'dependencies': [
         '../base/base.gyp:base',
         '../client/client.gyp:client',
-        '../base/absl.gyp:absl_synchronization',
-        '../base/absl.gyp:absl_time',
+        '../base/absl.gyp:absl_base',
       ],
     },
     {
@@ -98,7 +97,7 @@
         'session_observer_handler.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../composer/composer.gyp:composer',
         '../config/config.gyp:character_form_manager',
         '../config/config.gyp:config_handler',
@@ -130,7 +129,7 @@
         ':session',
         ':session_handler',
         ':session_usage_observer',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
         '../config/config.gyp:config_handler',
@@ -147,7 +146,7 @@
         'session_usage_observer.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
         '../config/config.gyp:stats_config_util',
@@ -163,7 +162,7 @@
         'session_server.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../engine/engine.gyp:engine_factory',
         '../usage_stats/usage_stats_base.gyp:usage_stats_uploader',
@@ -180,8 +179,7 @@
         'random_keyevents_generator.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:japanese_util',
         '../protocol/protocol.gyp:commands_proto',
         '../protocol/protocol.gyp:config_proto',

@@ -55,7 +55,7 @@
         'connector.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../storage/louds/louds.gyp:simple_succinct_bit_vector_index',
       ],
@@ -81,7 +81,7 @@
         'segments.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../dictionary/dictionary_base.gyp:pos_matcher',
         '../prediction/prediction_base.gyp:suggestion_filter',
@@ -154,7 +154,7 @@
         'pos_id_printer.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
       ],

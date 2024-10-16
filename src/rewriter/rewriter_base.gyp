@@ -101,7 +101,7 @@
         'gen_collocation_data_main.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         'gen_existence_data',
       ],
     },
@@ -154,7 +154,7 @@
         'gen_emoticon_rewriter_data.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../data_manager/data_manager_base.gyp:serialized_dictionary',
       ],

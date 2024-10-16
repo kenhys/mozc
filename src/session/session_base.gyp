@@ -54,7 +54,7 @@
         'internal/keymap.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../composer/composer.gyp:key_event_util',
         '../composer/composer.gyp:key_parser',
@@ -70,7 +70,7 @@
         'key_info_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:config_file_stream',
         '../composer/composer.gyp:key_event_util',
@@ -99,7 +99,7 @@
         'session_usage_stats_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../protobuf/protobuf.gyp:protobuf',
         '../protocol/protocol.gyp:commands_proto',

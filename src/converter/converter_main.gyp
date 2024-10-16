@@ -40,7 +40,7 @@
         'converter_main.cc',
        ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:number_util',
         '../composer/composer.gyp:composer',
         '../engine/engine.gyp:engine',

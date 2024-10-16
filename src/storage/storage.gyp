@@ -42,8 +42,7 @@
         'tiny_storage.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:encryptor',
         '../base/base_test.gyp:clock_mock',
