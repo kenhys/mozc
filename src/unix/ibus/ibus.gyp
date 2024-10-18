@@ -252,7 +252,6 @@
         '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
         '../../client/client.gyp:client',
-        '../../client/client.gyp:client_mock',
         '../../protocol/protocol.gyp:commands_proto',
         '../../testing/testing.gyp:gtest_main',
         'ibus_mozc_lib',
