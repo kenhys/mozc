@@ -73,14 +73,14 @@ using ::mozc::usage_stats::UsageStats;
 
 constexpr size_t kDefaultMaxHistorySize = 3;
 
-absl::string_view GetCandidateShortcuts(
+const char *GetCandidateShortcuts(
     config::Config::SelectionShortcut selection_shortcut) {
   // Keyboard shortcut for candidates.
-  constexpr absl::string_view kShortcut123456789 = "123456789";
-  constexpr absl::string_view kShortcutASDFGHJKL = "asdfghjkl";
-  constexpr absl::string_view kNoShortcut = "";
+  constexpr const char *kShortcut123456789 = "123456789";
+  constexpr const char *kShortcutASDFGHJKL = "asdfghjkl";
+  constexpr const char *kNoShortcut = "";
 
-  absl::string_view shortcut = kNoShortcut;
+  const char *shortcut = kNoShortcut;
   switch (selection_shortcut) {
     case config::Config::SHORTCUT_123456789:
       shortcut = kShortcut123456789;
@@ -106,7 +106,7 @@ ConversionRequest CreateIncognitoConversionRequest(
 }
 
 // Calculate cursor offset for committed text.
-int32_t CalculateCursorOffset(absl::string_view committed_text) {
+int32_t CalculateCursorOffset(const std::string &committed_text) {
   // If committed_text is a bracket pair, set the cursor in the middle.
   return Util::IsBracketPairText(committed_text) ? -1 : 0;
 }
