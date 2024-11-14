@@ -67,14 +67,14 @@ using __gnu_cxx::hash_map;
 static char **argv;
 
 // for every 5 minutes, call SyncData
-const uint64 kSyncDataInterval = 5 * 60;
+const uint64_t kSyncDataInterval = 5 * 60;
 #if USE_CASCADING_CANDIDATES
 // An ID for a candidate which is not associated with a text.
-const int32 kBadCandidateId = -1;
+const int32_t kBadCandidateId = -1;
 #endif
 
-uint64 GetTime() {
-  return static_cast<uint64>(time(NULL));
+uint64_t GetTime() {
+  return static_cast<uint64_t>(time(NULL));
 }
 
 namespace mozc {
@@ -93,9 +93,9 @@ static struct context_slot_ {
   bool need_cand_reactivate;
   int prev_page;
   int cand_nr_before;
-  uint64 last_sync_time;
+  uint64_t last_sync_time;
 #if USE_CASCADING_CANDIDATES
-  vector<int32> *unique_candidate_ids;
+  vector<int32_t> *unique_candidate_ids;
 #endif
   config::Config::PreeditMethod preedit_method;
 } *context_slot;
@@ -126,7 +126,7 @@ SyncData(int id, bool force)
   if (context_slot[id].session == NULL)
     return;
 
-  const uint64 current_time = GetTime();
+  const uint64_t current_time = GetTime();
   if (force ||
       (current_time >= context_slot[id].last_sync_time &&
        current_time - context_slot[id].last_sync_time >= kSyncDataInterval)) {
@@ -173,8 +173,8 @@ insert_cursor(uim_lisp segs, const commands::Preedit::Segment &segment, int attr
 {
   size_t len = segment.value_length();
 
-  auto former = string(Util::Utf8SubString(segment.value(), 0, pos));
-  auto latter = string(Util::Utf8SubString(segment.value(), pos, len));
+  auto former = std::string(Util::Utf8SubString(segment.value(), 0, pos));
+  auto latter = std::string(Util::Utf8SubString(segment.value(), pos, len));
 
   uim_lisp seg_f, seg_c, seg_l;
   if (pos == 0) {
@@ -316,7 +316,7 @@ update_candidates(uim_lisp mc_, int id)
     context_slot[id].unique_candidate_ids->clear();
     for (int i = 0; i < candidates.candidate_size(); ++i) {
       if (candidates.candidate(i).has_id()) {
-        const int32 cand_id = candidates.candidate(i).id();
+        const int32_t cand_id = candidates.candidate(i).id();
         context_slot[id].unique_candidate_ids->push_back(cand_id);
       } else {
         // The parent node of the cascading window does not have an id since the
@@ -380,7 +380,7 @@ execute_callback(uim_lisp mc_, int id)
 	  !NULLP(latter = uim_scm_callf("ustr-latter-seq", "o", ustr))) {
 	  uim_lisp str = CAR(latter);
 
-          string text = REFER_C_STR(str);
+          std::string text = REFER_C_STR(str);
           session_command.set_text(text);
       } else {
 #if 0
@@ -389,7 +389,7 @@ execute_callback(uim_lisp mc_, int id)
         ustr = uim_scm_callf("im-acquire-text", "oyyyi", mc_, "primary", "cursor", "line", 0);
 	if (TRUEP(ustr) && !NULLP(former = uim_scm_callf("ustr-former-seq", "o", ustr))) {
 	  uim_lisp str = CAR(former);
-	  string text = REFER_C_STR(str);
+          std::string text = REFER_C_STR(str);
 	  session_command.set_text(text);
 	  use_primary_text = 1;
 	} else
@@ -449,7 +449,7 @@ create_context(uim_lisp mc_)
   context_slot[id].cand_nr_before = 0;
   context_slot[id].prev_page = 0;
 #if USE_CASCADING_CANDIDATES
-  context_slot[id].unique_candidate_ids = new vector<int32>;
+  context_slot[id].unique_candidate_ids = new vector<int32_t>;
 #endif
 
   // Launch mozc_server
@@ -1037,11 +1037,11 @@ select_candidate(uim_lisp mc_, uim_lisp id_, uim_lisp idx_)
     return uim_scm_f();
 
 #if USE_CASCADING_CANDIDATES
-  const int32 cand_id = (*context_slot[id].unique_candidate_ids)[idx];
+  const int32_t cand_id = (*context_slot[id].unique_candidate_ids)[idx];
   if (cand_id == kBadCandidateId)
     return uim_scm_f();
 #else
-  const int32 cand_id = context_slot[id].output->candidates().candidate(idx).id();
+  const int32_t cand_id = context_slot[id].output->candidates().candidate(idx).id();
 #endif
 
   commands::SessionCommand command;
@@ -1126,14 +1126,14 @@ reconvert(uim_lisp mc_, uim_lisp id_)
       !NULLP(latter = uim_scm_callf("ustr-latter-seq", "o", ustr))) {
     uim_lisp str = CAR(latter);
 
-    string text = REFER_C_STR(str);
+    std::string text = REFER_C_STR(str);
     session_command.set_text(text);
   } else {
     ustr = uim_scm_callf("im-acquire-text", "oyyyi", mc_, "primary", "cursor", "line", 0);
     if (TRUEP(ustr) &&
 	!NULLP(former = uim_scm_callf("ustr-former-seq", "o", ustr))) {
       uim_lisp str = CAR(former);
-      string text = REFER_C_STR(str);
+      std::string text = REFER_C_STR(str);
       session_command.set_text(text);
       use_primary_text = 1;
     } else
