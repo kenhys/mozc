@@ -55,7 +55,7 @@
         'connector.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/storage/louds/louds.gyp:simple_succinct_bit_vector_index',
       ],
@@ -81,8 +81,7 @@
         'segments.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_log',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/dictionary/dictionary_base.gyp:pos_matcher',
         '<(mozc_oss_src_dir)/prediction/prediction_base.gyp:suggestion_filter',
@@ -112,7 +111,7 @@
         'pos_id_printer.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
       ],

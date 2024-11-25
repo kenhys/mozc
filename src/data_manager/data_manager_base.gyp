@@ -41,8 +41,7 @@
         'data_manager.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:serialized_string_array',
         '<(mozc_oss_src_dir)/base/base.gyp:version',
@@ -86,7 +85,7 @@
         'dataset_writer.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:obfuscator_support',
         'dataset_proto',
@@ -100,7 +99,7 @@
         'dataset_reader.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:obfuscator_support',
         'dataset_proto',
@@ -129,7 +128,7 @@
         'serialized_dictionary.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
         '<(mozc_oss_src_dir)/base/base.gyp:serialized_string_array',

@@ -37,7 +37,7 @@
         'codec.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base_core',
       ],
     },
@@ -56,7 +56,7 @@
         'system_dictionary.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base_core',
         '<(mozc_oss_src_dir)/base/base.gyp:japanese_util',
         '<(mozc_oss_src_dir)/request/request.gyp:conversion_request',

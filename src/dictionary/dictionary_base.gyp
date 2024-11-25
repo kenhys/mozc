@@ -45,7 +45,7 @@
         'text_dictionary_loader.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:multifile',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
@@ -111,7 +111,7 @@
         'user_pos.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
       ],
     },
@@ -157,7 +157,7 @@
         'suppression_dictionary.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
       ],
     },
@@ -174,9 +174,7 @@
         'user_dictionary_util.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:config_file_stream',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',

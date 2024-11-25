@@ -61,7 +61,7 @@
         'session_test.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/data_manager/testing/mock_data_manager.gyp:mock_data_manager',
         '<(mozc_oss_src_dir)/engine/engine.gyp:engine',
         '<(mozc_oss_src_dir)/engine/engine.gyp:mock_data_engine_factory',
@@ -169,7 +169,7 @@
         'session_watch_dog_test.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_time',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
         'session.gyp:session_watch_dog',
@@ -276,8 +276,7 @@
         'session_handler_scenario_test.cc'
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
         '<(mozc_oss_src_dir)/data/test/session/scenario/scenario.gyp:install_session_handler_scenario_test_data',

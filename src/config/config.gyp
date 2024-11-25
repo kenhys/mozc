@@ -40,7 +40,7 @@
         'config_handler.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:config_file_stream',
         '<(mozc_oss_src_dir)/base/base.gyp:hash',
@@ -55,7 +55,7 @@
         'stats_config_util.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         'config_handler',
       ],
     },

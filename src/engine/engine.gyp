@@ -42,7 +42,7 @@
       ],
       'dependencies': [
         'engine',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/data_manager/data_manager_base.gyp:data_manager',
         '<(mozc_oss_src_dir)/dictionary/dictionary_base.gyp:pos_matcher',
@@ -59,8 +59,7 @@
       ],
       'dependencies': [
         'minimal_engine',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_status',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/converter/converter.gyp:converter',
         '<(mozc_oss_src_dir)/dictionary/dictionary_base.gyp:pos_matcher',

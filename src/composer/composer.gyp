@@ -51,9 +51,7 @@
       'dependencies': [
         'key_event_util',
         'key_parser',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_log',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_time',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:clock',
         '<(mozc_oss_src_dir)/base/base.gyp:config_file_stream',
@@ -84,7 +82,7 @@
         'key_parser.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/protocol/protocol.gyp:config_proto',
         '<(mozc_oss_src_dir)/protocol/protocol.gyp:commands_proto',

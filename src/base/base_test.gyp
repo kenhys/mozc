@@ -76,8 +76,7 @@
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
         '<(mozc_oss_src_dir)/testing/testing.gyp:mozctest',
-        'absl.gyp:absl_status',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
         'base.gyp:base',
         'base.gyp:codegen_bytearray_stream#host',
         'clock_mock',
@@ -94,7 +93,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',  # for util
         'base.gyp:url',
       ],
@@ -121,9 +120,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_random',
-        'absl.gyp:absl_strings',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
         'base.gyp:version',
       ],
@@ -152,7 +149,7 @@
         'clock_mock.cc'
       ],
       'dependencies': [
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -185,7 +182,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:japanese_util',
       ],
       'variables': {
@@ -201,7 +198,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
       ],
       'variables': {
@@ -217,7 +214,7 @@
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
         '<(mozc_oss_src_dir)/testing/testing.gyp:mozctest',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
         'base.gyp:number_util',
       ],
@@ -280,7 +277,7 @@
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
         '<(mozc_oss_src_dir)/testing/testing.gyp:mozctest',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base_core',
       ],
       'variables': {
@@ -364,7 +361,7 @@
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
         '<(mozc_oss_src_dir)/testing/testing.gyp:mozctest',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:multifile',
       ],
     },
@@ -437,7 +434,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base',
       ],
     },
@@ -449,8 +446,7 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/testing/testing.gyp:gtest_main',
-        'absl.gyp:absl_hash_testing',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base.gyp:base',
       ],
     },

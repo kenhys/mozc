@@ -42,8 +42,7 @@
         'session_converter.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_log',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:version',
         '<(mozc_oss_src_dir)/composer/composer.gyp:key_parser',
@@ -71,7 +70,7 @@
         'internal/key_event_transformer.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/composer/composer.gyp:composer',
         '<(mozc_oss_src_dir)/config/config.gyp:config_handler',
@@ -89,8 +88,7 @@
       'dependencies': [
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/client/client.gyp:client',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_time',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
       ],
     },
     {
@@ -101,7 +99,7 @@
         'session_observer_handler.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/composer/composer.gyp:composer',
         '<(mozc_oss_src_dir)/config/config.gyp:character_form_manager',
         '<(mozc_oss_src_dir)/config/config.gyp:config_handler',
@@ -133,7 +131,7 @@
         ':session',
         ':session_handler',
         ':session_usage_observer',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
         '<(mozc_oss_src_dir)/config/config.gyp:config_handler',
@@ -151,7 +149,7 @@
         'session_usage_observer.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_synchronization',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:number_util',
         '<(mozc_oss_src_dir)/config/config.gyp:stats_config_util',
@@ -167,7 +165,7 @@
         'session_server.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/engine/engine.gyp:engine_factory',
         '<(mozc_oss_src_dir)/usage_stats/usage_stats_base.gyp:usage_stats_uploader',
@@ -185,8 +183,7 @@
         'random_keyevents_generator.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_random',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:japanese_util',
         '<(mozc_oss_src_dir)/protocol/protocol.gyp:commands_proto',
         '<(mozc_oss_src_dir)/protocol/protocol.gyp:config_proto',

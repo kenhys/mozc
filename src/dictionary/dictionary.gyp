@@ -54,7 +54,7 @@
         'suffix_dictionary.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:serialized_string_array',
         '<(mozc_oss_src_dir)/request/request.gyp:conversion_request',
@@ -67,7 +67,7 @@
         'single_kanji_dictionary.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/base/base.gyp:serialized_string_array',
         '<(mozc_oss_src_dir)/data_manager/data_manager_base.gyp:serialized_dictionary',
@@ -80,7 +80,7 @@
         'dictionary_impl.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/config/config.gyp:config_handler',
         '<(mozc_oss_src_dir)/protocol/protocol.gyp:commands_proto',
@@ -99,7 +99,6 @@
       ],
       'dependencies': [
         '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/data_manager/data_manager_base.gyp:data_manager',
         'dictionary_base.gyp:pos_matcher',
@@ -118,7 +117,7 @@
         'dictionary_test_util.cc',
       ],
       'dependencies': [
-        '<(mozc_oss_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_oss_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_oss_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/request/request.gyp:conversion_request',
         '<(mozc_oss_src_dir)/testing/testing.gyp:testing',
