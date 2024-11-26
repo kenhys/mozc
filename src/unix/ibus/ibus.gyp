@@ -127,7 +127,7 @@
         'message_translator.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
       ],
     },
@@ -171,8 +171,7 @@
         'surrounding_text_util.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_status',
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../client/client.gyp:client',
         '../../protocol/protocol.gyp:commands_proto',
         '../../protocol/protocol.gyp:renderer_proto',
@@ -240,7 +239,7 @@
         'surrounding_text_util_test.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
         '../../client/client.gyp:client',
         '../../client/client.gyp:client_mock',
