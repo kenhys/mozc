@@ -42,7 +42,7 @@
       ],
       'dependencies': [
         'engine',
-        '../base/absl.gyp:absl_status',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../data_manager/data_manager_base.gyp:data_manager',
         '../dictionary/dictionary_base.gyp:pos_matcher',
@@ -58,8 +58,7 @@
         'engine.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../converter/converter.gyp:converter',
         '../converter/converter_base.gyp:connector',

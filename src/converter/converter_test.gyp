@@ -47,7 +47,7 @@
         'segments_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:number_util',
         '../composer/composer.gyp:composer',
         '../config/config.gyp:config_handler',

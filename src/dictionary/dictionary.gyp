@@ -54,7 +54,7 @@
         'suffix_dictionary.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:serialized_string_array',
         '../request/request.gyp:conversion_request',
@@ -67,7 +67,7 @@
         'single_kanji_dictionary.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:serialized_string_array',
         '../data_manager/data_manager_base.gyp:serialized_dictionary',
@@ -80,7 +80,7 @@
         'dictionary_impl.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../config/config.gyp:config_handler',
         '../protocol/protocol.gyp:commands_proto',
@@ -99,7 +99,6 @@
       ],
       'dependencies': [
         '../base/absl.gyp:absl_base',
-        '../base/absl.gyp:absl_strings',
         '../base/base.gyp:base',
         '../data_manager/data_manager_base.gyp:data_manager',
         'dictionary_base.gyp:pos_matcher',
@@ -118,7 +117,7 @@
         'dictionary_test_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../request/request.gyp:conversion_request',
         '../testing/testing.gyp:testing',

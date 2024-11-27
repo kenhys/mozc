@@ -47,7 +47,7 @@
         'user_history_predictor.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:config_file_stream',
         '../base/base.gyp:number_util',

@@ -60,7 +60,7 @@
         'calculator_mock.cc',
       ],
       'dependencies': [
-        '../../base/absl.gyp:absl_strings',
+        '../../base/absl.gyp:absl_base',
         '../../base/base.gyp:base',
         'calculator',
       ],

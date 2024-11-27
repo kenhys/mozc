@@ -40,7 +40,7 @@
         'config_handler.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:config_file_stream',
         '../base/base.gyp:hash',
@@ -55,7 +55,7 @@
         'stats_config_util.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_synchronization',
+        '../base/absl.gyp:absl_base',
         'config_handler',
       ],
     },

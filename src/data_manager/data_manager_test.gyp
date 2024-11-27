@@ -40,7 +40,7 @@
         'data_manager_test_base.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../converter/converter_base.gyp:connector',
         '../converter/converter_base.gyp:segmenter',
@@ -74,8 +74,7 @@
         'dataset_reader_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../testing/testing.gyp:gtest_main',
         '../testing/testing.gyp:testing',

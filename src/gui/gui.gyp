@@ -54,7 +54,7 @@
         'base/window_title_modifier.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/dictionary/dictionary_base.gyp:user_dictionary',
         '<(mozc_src_dir)/ipc/ipc.gyp:ipc',
         '<(mozc_src_dir)/ipc/ipc.gyp:window_info_protocol',
@@ -305,7 +305,7 @@
         'config_dialog/roman_table_editor.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/base/base.gyp:base',
         '<(mozc_src_dir)/base/base.gyp:config_file_stream',
         '<(mozc_oss_src_dir)/client/client.gyp:client',
@@ -393,7 +393,7 @@
         'dictionary_tool/zero_width_splitter.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/client/client.gyp:client',
         '<(mozc_src_dir)/config/config.gyp:config_handler',
@@ -466,7 +466,7 @@
         'word_register_dialog/word_register_dialog_libmain.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_status',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/base/base.gyp:base',
         '<(mozc_oss_src_dir)/client/client.gyp:client',
         '<(mozc_src_dir)/data_manager/data_manager.gyp:pos_list_provider',
@@ -754,7 +754,7 @@
         'base/encoding_util.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/base/base.gyp:base_core',
       ],
     },
@@ -765,7 +765,7 @@
         'base/encoding_util_test.cc',
       ],
       'dependencies': [
-        '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+        '<(mozc_src_dir)/base/absl.gyp:absl_base',
         '<(mozc_src_dir)/testing/testing.gyp:gtest_main',
         'encoding_util',
       ],

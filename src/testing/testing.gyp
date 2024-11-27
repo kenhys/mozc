@@ -212,8 +212,7 @@
         'mozctest.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base_core',
         'googletest_lib',
       ],

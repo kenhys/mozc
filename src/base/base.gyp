@@ -47,9 +47,7 @@
       ],
       'dependencies': [
         'base_core',
-        'absl.gyp:absl_strings',
-        'absl.gyp:absl_synchronization',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
       ],
       'conditions': [
         ['OS=="mac"', {
@@ -117,11 +115,7 @@
         'gen_character_set#host',
         'hash',
         'singleton',
-        'absl.gyp:absl_random',
-        'absl.gyp:absl_status',
-        'absl.gyp:absl_strings',
-        'absl.gyp:absl_synchronization',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
       ],
       'conditions': [
         ['OS=="win"', {
@@ -216,7 +210,7 @@
       'type': 'static_library',
       'toolsets': ['host', 'target'],
       'dependencies': [
-        'absl.gyp:absl_flags',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -228,7 +222,7 @@
       ],
       'dependencies': [
         'singleton',
-        'absl.gyp:absl_time',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -239,7 +233,7 @@
         'hash.cc',
       ],
       'dependencies': [
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -303,8 +297,7 @@
         'password_manager.cc',
       ],
       'dependencies': [
-        'absl.gyp:absl_strings',
-        'absl.gyp:absl_synchronization',
+        'absl.gyp:absl_base',
         'base',
         'obfuscator_support',
       ],
@@ -357,7 +350,7 @@
       'dependencies': [
         'base_core',
         'gen_config_file_stream_data#host',
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
       ],
     },
     {
@@ -415,7 +408,7 @@
         'multifile.cc',
       ],
       'dependencies': [
-        'absl.gyp:absl_strings',
+        'absl.gyp:absl_base',
         'base_core',
       ],
     },

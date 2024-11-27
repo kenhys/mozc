@@ -61,7 +61,7 @@
         'session_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../data_manager/testing/mock_data_manager.gyp:mock_data_manager',
         '../engine/engine.gyp:engine',
         '../engine/engine.gyp:mock_data_engine_factory',
@@ -164,7 +164,7 @@
         'session_watch_dog_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_time',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../testing/testing.gyp:gtest_main',
         'session.gyp:session_watch_dog',
@@ -285,8 +285,7 @@
         'session_handler_scenario_test.cc'
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_status',
-        '../base/absl.gyp:absl_strings',
+        '../base/absl.gyp:absl_base',
         '../base/base.gyp:base',
         '../base/base.gyp:number_util',
         '<(mozc_oss_src_dir)/data/test/session/scenario/scenario.gyp:install_session_handler_scenario_test_data',

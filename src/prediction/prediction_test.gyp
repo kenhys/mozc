@@ -46,9 +46,7 @@
         'zero_query_dict_test.cc',
       ],
       'dependencies': [
-        '../base/absl.gyp:absl_random',
-        '../base/absl.gyp:absl_strings',
-        '../base/absl.gyp:absl_time',
+        '../base/absl.gyp:absl_base',
         '../base/base_test.gyp:clock_mock',
         '../composer/composer.gyp:composer',
         '../config/config.gyp:config_handler',

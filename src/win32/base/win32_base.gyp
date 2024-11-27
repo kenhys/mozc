@@ -146,7 +146,7 @@
             'win32_window_util.cc',
           ],
           'dependencies': [
-            '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+            '<(mozc_src_dir)/base/absl.gyp:absl_base',
             '<(mozc_src_dir)/base/base.gyp:base',
             '<(mozc_src_dir)/config/config.gyp:config_handler',
             '<(mozc_src_dir)/protocol/protocol.gyp:commands_proto',
@@ -210,7 +210,7 @@
             'text_icon.cc',
           ],
           'dependencies': [
-            '<(mozc_src_dir)/base/absl.gyp:absl_strings',
+            '<(mozc_src_dir)/base/absl.gyp:absl_base',
             '<(mozc_src_dir)/base/base.gyp:base',
           ],
         },
