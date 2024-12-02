@@ -39,7 +39,6 @@
 #include <vector>
 
 #include "base/logging.h"
-#include "base/strings/assign.h"
 #include "base/text_normalizer.h"
 #include "base/util.h"
 #include "base/version.h"
@@ -319,13 +318,14 @@ void SessionOutput::FillUsages(const Segment &segment,
 }
 
 // static
-void SessionOutput::FillShortcuts(absl::string_view shortcuts,
+void SessionOutput::FillShortcuts(const std::string &shortcuts,
                                   commands::Candidates *candidates_proto) {
   const size_t num_loop =
       std::min<size_t>(candidates_proto->candidate_size(), shortcuts.size());
   for (size_t i = 0; i < num_loop; ++i) {
+    const std::string shortcut = shortcuts.substr(i, 1);
     candidates_proto->mutable_candidate(i)->mutable_annotation()->set_shortcut(
-        shortcuts.substr(i, 1));
+        shortcut);
   }
 }
 
@@ -360,7 +360,7 @@ bool SessionOutput::FillFooter(const commands::Category category,
   commands::Footer *footer = candidates->mutable_footer();
   if (category == commands::SUGGESTION) {
     // TODO(komatsu): Enable to localized the message.
-    constexpr absl::string_view kLabel = "Tabキーで選択";
+    constexpr char kLabel[] = "Tabキーで選択";
     // TODO(komatsu): Need to check if Tab is not changed to other key binding.
     footer->set_label(kLabel);
   } else {
@@ -379,14 +379,13 @@ bool SessionOutput::FillFooter(const commands::Category category,
         if (cand.has_annotation() && cand.annotation().deletable()) {
           // TODO(noriyukit): Change the message depending on user's keymap.
 #if defined(__APPLE__)
-          constexpr absl::string_view kDeleteInstruction =
+          constexpr char kDeleteInstruction[] =
               "control+fn+deleteで履歴から削除";
 #elif defined(OS_CHROMEOS)
-          constexpr absl::string_view kDeleteInstruction =
+          constexpr char kDeleteInstruction[] =
               "ctrl+alt+backspaceで履歴から削除";
 #else   // !__APPLE__ && !OS_CHROMEOS
-          constexpr absl::string_view kDeleteInstruction =
-              "Ctrl+Delで履歴から削除";
+          constexpr char kDeleteInstruction[] = "Ctrl+Delで履歴から削除";
 #endif  // __APPLE__ || OS_CHROMEOS
           footer->set_label(kDeleteInstruction);
           show_build_number = false;
@@ -419,10 +418,10 @@ bool SessionOutput::AddSegment(const absl::string_view key,
   if (segment_type_mask & PREEDIT) {
     normalized_value = TextNormalizer::NormalizeText(value);
   } else if (segment_type_mask & CONVERSION) {
-    strings::Assign(normalized_value, value);
+    normalized_value = std::string(value);
   } else {
     LOG(WARNING) << "Unknown segment type" << segment_type_mask;
-    strings::Assign(normalized_value, value);
+    normalized_value = std::string(value);
   }
 
   if (normalized_value.empty()) {

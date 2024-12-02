@@ -47,7 +47,6 @@
 #include "session/internal/candidate_list.h"
 #include "session/session_converter_interface.h"
 #include "transliteration/transliteration.h"
-#include "absl/strings/string_view.h"
 
 namespace mozc {
 namespace session {
@@ -61,6 +60,7 @@ class SessionConverter : public SessionConverterInterface {
                    const config::Config *config);
   SessionConverter(const SessionConverter &) = delete;
   SessionConverter &operator=(const SessionConverter &) = delete;
+  ~SessionConverter() override;
 
   // Checks if the current state is in the state bitmap.
   bool CheckState(States) const override;
@@ -88,7 +88,7 @@ class SessionConverter : public SessionConverterInterface {
       const ConversionPreferences &preferences) override;
 
   // Gets reading text (e.g. from "猫" to "ねこ").
-  bool GetReadingText(absl::string_view source_text,
+  bool GetReadingText(const std::string &source_text,
                       std::string *reading) override;
 
   // Sends a transliteration request to the converter.
@@ -350,7 +350,7 @@ class SessionConverter : public SessionConverterInterface {
   // Handles selected_indices for usage stats.
   void InitializeSelectedCandidateIndices();
   void UpdateSelectedCandidateIndex();
-  void UpdateCandidateStats(absl::string_view base_name, int32_t index);
+  void UpdateCandidateStats(const std::string &base_name, int32_t index);
   void CommitUsageStats(SessionConverterInterface::State commit_state,
                         const commands::Context &context);
   void CommitUsageStatsWithSegmentsSize(

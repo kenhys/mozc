@@ -36,13 +36,11 @@
 #include <memory>
 #include <ostream>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "base/container/freelist.h"
 #include "base/logging.h"
 #include "base/number_util.h"
-#include "base/strings/assign.h"
 #include "converter/lattice.h"
 #include "absl/strings/string_view.h"
 
@@ -331,10 +329,7 @@ class Segment final {
   }
 
   const std::string &key() const { return key_; }
-  template <typename T>
-  void set_key(T &&key) {
-    strings::Assign(key_, std::forward<T>(key));
-  }
+  void set_key(absl::string_view key) { key_.assign(key.data(), key.size()); }
 
   // check if the specified index is valid or not.
   bool is_valid_index(int i) const;

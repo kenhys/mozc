@@ -35,7 +35,6 @@
 #include <cstddef>
 #include <cstdint>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "base/logging.h"
@@ -43,6 +42,7 @@
 #include "base/util.h"
 #include "composer/composer.h"
 #include "converter/converter_interface.h"
+#include "converter/converter_util.h"
 #include "converter/segments.h"
 #include "protocol/candidates.pb.h"
 #include "protocol/commands.pb.h"
@@ -56,8 +56,6 @@
 #include "usage_stats/usage_stats.h"
 #include "absl/flags/flag.h"
 #include "absl/strings/match.h"
-#include "absl/strings/str_cat.h"
-#include "absl/strings/string_view.h"
 
 ABSL_FLAG(bool, use_actual_converter_for_realtime_conversion, true,
           "If true, use the actual (non-immutable) converter for real "
@@ -73,14 +71,14 @@ using ::mozc::usage_stats::UsageStats;
 
 constexpr size_t kDefaultMaxHistorySize = 3;
 
-absl::string_view GetCandidateShortcuts(
+const char *GetCandidateShortcuts(
     config::Config::SelectionShortcut selection_shortcut) {
   // Keyboard shortcut for candidates.
-  constexpr absl::string_view kShortcut123456789 = "123456789";
-  constexpr absl::string_view kShortcutASDFGHJKL = "asdfghjkl";
-  constexpr absl::string_view kNoShortcut = "";
+  constexpr const char *kShortcut123456789 = "123456789";
+  constexpr const char *kShortcutASDFGHJKL = "asdfghjkl";
+  constexpr const char *kNoShortcut = "";
 
-  absl::string_view shortcut = kNoShortcut;
+  const char *shortcut = kNoShortcut;
   switch (selection_shortcut) {
     case config::Config::SHORTCUT_123456789:
       shortcut = kShortcut123456789;
@@ -106,7 +104,7 @@ ConversionRequest CreateIncognitoConversionRequest(
 }
 
 // Calculate cursor offset for committed text.
-int32_t CalculateCursorOffset(absl::string_view committed_text) {
+int32_t CalculateCursorOffset(const std::string &committed_text) {
   // If committed_text is a bracket pair, set the cursor in the middle.
   return Util::IsBracketPairText(committed_text) ? -1 : 0;
 }
@@ -115,23 +113,6 @@ void SetUseActualConverterForRealtimeConversion(
     const Request &request, ConversionRequest *conversion_request) {
   conversion_request->set_use_actual_converter_for_realtime_conversion(
       absl::GetFlag(FLAGS_use_actual_converter_for_realtime_conversion));
-}
-
-// Make a segment having one candidate. The value of candidate is the
-// same as the preedit.  This function can be used for error handling.
-// When the converter fails, we can call this function to make a
-// virtual segment.
-void InitSegmentsFromString(std::string key, std::string preedit,
-                            Segments *segments) {
-  segments->clear_conversion_segments();
-  Segment *segment = segments->add_segment();
-  segment->set_key(key);
-  segment->set_segment_type(Segment::FIXED_VALUE);
-  Segment::Candidate *c = segment->add_candidate();
-  c->value = preedit;
-  c->content_value = std::move(preedit);
-  c->key = key;
-  c->content_key = std::move(key);
 }
 
 }  // namespace
@@ -156,6 +137,8 @@ SessionConverter::SessionConverter(const ConverterInterface *converter,
   candidate_list_->set_page_size(request->candidate_page_size());
   SetConfig(config);
 }
+
+SessionConverter::~SessionConverter() = default;
 
 bool SessionConverter::CheckState(
     SessionConverterInterface::States states) const {
@@ -198,7 +181,7 @@ bool SessionConverter::ConvertWithPreferences(
   return true;
 }
 
-bool SessionConverter::GetReadingText(absl::string_view source_text,
+bool SessionConverter::GetReadingText(const std::string &source_text,
                                       std::string *reading) {
   DCHECK(reading);
   reading->clear();
@@ -408,15 +391,15 @@ bool SessionConverter::SwitchKanaType(const composer::Composer &composer) {
 namespace {
 
 // Prepend the candidates to the first conversion segment.
-void PrependCandidates(const Segment &previous_segment, std::string preedit,
-                       Segments *segments) {
+void PrependCandidates(const Segment &previous_segment,
+                       const std::string &preedit, Segments *segments) {
   DCHECK(segments);
 
   // TODO(taku) want to have a method in converter to make an empty segment
   if (segments->conversion_segments_size() == 0) {
     segments->clear_conversion_segments();
     Segment *segment = segments->add_segment();
-    segment->set_key(std::move(preedit));
+    segment->set_key(preedit);
   }
 
   DCHECK_EQ(1, segments->conversion_segments_size());
@@ -598,7 +581,7 @@ bool SessionConverter::PredictWithPreferences(
   // Merge suggestions and prediction
   std::string preedit;
   composer.GetQueryForPrediction(&preedit);
-  PrependCandidates(previous_suggestions_, std::move(preedit), segments_.get());
+  PrependCandidates(previous_suggestions_, preedit, segments_.get());
 
   segment_index_ = 0;
   state_ = PREDICTION;
@@ -836,7 +819,7 @@ void SessionConverter::CommitPreedit(const composer::Composer &composer,
   std::string key, preedit;
   composer.GetQueryForConversion(&key);
   composer.GetStringForSubmission(&preedit);
-  std::string normalized_preedit = TextNormalizer::NormalizeText(preedit);
+  const std::string normalized_preedit = TextNormalizer::NormalizeText(preedit);
   SessionOutput::FillPreeditResult(preedit, result_.get());
 
   // Add ResultToken
@@ -847,8 +830,12 @@ void SessionConverter::CommitPreedit(const composer::Composer &composer,
   // Cursor offset needs to be calculated based on normalized text.
   SessionOutput::FillCursorOffsetResult(
       CalculateCursorOffset(normalized_preedit), result_.get());
-  InitSegmentsFromString(std::move(key), std::move(normalized_preedit),
-                         segments_.get());
+
+  // TODO(toshiyuki): Move ConverterUtil::InitSegmentsFromString()
+  // into here, because this is the only usage of the method.
+  ConverterUtil::InitSegmentsFromString(key, normalized_preedit,
+                                        segments_.get());
+
   CommitUsageStats(SessionConverterInterface::COMPOSITION, context);
   ConversionRequest conversion_request(&composer, request_, config_);
   // the request mode is CONVERSION, as the user experience
@@ -1052,7 +1039,7 @@ bool SessionConverter::CandidateMoveToShortcut(const char shortcut) {
     return false;
   }
 
-  const absl::string_view shortcuts(GetCandidateShortcuts(selection_shortcut_));
+  const std::string shortcuts(GetCandidateShortcuts(selection_shortcut_));
   if (shortcuts.empty()) {
     VLOG(1) << "No shortcuts";
     return false;
@@ -1061,8 +1048,8 @@ bool SessionConverter::CandidateMoveToShortcut(const char shortcut) {
   // Check if the input character is in the shortcut.
   // TODO(komatsu): Support non ASCII characters such as Unicode and
   // special keys.
-  const absl::string_view::size_type index = shortcuts.find(shortcut);
-  if (index == absl::string_view::npos) {
+  const std::string::size_type index = shortcuts.find(shortcut);
+  if (index == std::string::npos) {
     VLOG(1) << "shortcut is not a member of shortcuts.";
     return false;
   }
@@ -1765,22 +1752,23 @@ void SessionConverter::InitializeSelectedCandidateIndices() {
   selected_candidate_indices_.resize(segments_->conversion_segments_size());
 }
 
-void SessionConverter::UpdateCandidateStats(absl::string_view base_name,
+void SessionConverter::UpdateCandidateStats(const std::string &base_name,
                                             int32_t index) {
-  std::string name;
+  std::string prefix;
   if (index < 0) {
-    name = "TransliterationCandidates";
+    prefix = "TransliterationCandidates";
     index = -1 - index;
   } else {
-    absl::StrAppend(&name, base_name, "Candidates");
+    prefix = base_name + "Candidates";
   }
 
   if (index <= 9) {
-    absl::StrAppend(&name, index);
+    const std::string stats_name = prefix + std::to_string(index);
+    UsageStats::IncrementCount(stats_name);
   } else {
-    name += "GE10";
+    const std::string stats_name = prefix + "GE10";
+    UsageStats::IncrementCount(stats_name);
   }
-  UsageStats::IncrementCount(name);
 }
 
 void SessionConverter::CommitUsageStats(
