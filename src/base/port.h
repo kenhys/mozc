@@ -38,37 +38,34 @@ namespace mozc {
 namespace port_internal {
 // PlatformType represents a mutually exclusive list of target platforms.
 enum class PlatformType {
-  kWindows,   // Windows
-  kLinux,     // Linux, excluding Android (different from target_is_linux)
-  kOSX,       // OSX
-  kAndroid,   // Android
-  kIPhone,    // Darwin-based firmware, devices, or simulator
-  kWASM,      // WASM
-  kChromeOS,  // ChromeOS
+  kWindows,  // Windows
+  kLinux,    // Linux, excluding Android (different from target_is_linux)
+  kOSX,      // OSX
+  kAndroid,  // Android
+  kIPhone,   // Darwin-based firmware, devices, or simulator
+  kWASM,     // WASM
 };
 
 // kTargetPlatform is the current build target platform.
 #if defined(__linux__)
 #if defined(__ANDROID__)
 inline constexpr PlatformType kTargetPlatform = PlatformType::kAndroid;
-#elif defined(OS_CHROMEOS)  // __ANDROID__
-inline constexpr PlatformType kTargetPlatform = PlatformType::kChromeOS;
-#else                                        // OS_CHROMEOS
+#else   // __ANDROID__
 inline constexpr PlatformType kTargetPlatform = PlatformType::kLinux;
-#endif                                       // !OS_CHROMEOS
-#elif defined(_WIN32)                        // __linux__
+#endif  // !__ANDROID__
+#elif defined(_WIN32)
 inline constexpr PlatformType kTargetPlatform = PlatformType::kWindows;
-#elif defined(__APPLE__)                     // _WIN32
+#elif defined(__APPLE__)
 #if TARGET_OS_OSX
 inline constexpr PlatformType kTargetPlatform = PlatformType::kOSX;
-#elif TARGET_OS_IPHONE  // TARGET_OS_OSX
+#elif TARGET_OS_IPHONE
 inline constexpr PlatformType kTargetPlatform = PlatformType::kIPhone;
-#else                   // TARGET_OS_IPHONE
+#else  // TARGET_OS_IPHONE
 #error "Unsupported Apple platform target."
-#endif                   // !TARGET_OS_IPHONE
-#elif defined(__wasm__)  // __APPLE__
+#endif  // !TARGET_OS_IPHONE
+#elif defined(__wasm__)
 inline constexpr PlatformType kTargetPlatform = PlatformType::kWASM;
-#else                    // __wasm__
+#else  // __wasm__
 #error "Unsupported target platform."
 #endif  // !__wasm__
 }  // namespace port_internal
@@ -115,14 +112,12 @@ constexpr bool TargetIsWindows() {
          port_internal::PlatformType::kWindows;
 }
 
-// The build target is Linux, including Android and ChromeOS.
+// The build target is Linux, including Android.
 constexpr bool TargetIsLinux() {
   return port_internal::kTargetPlatform ==
              port_internal::PlatformType::kLinux ||
          port_internal::kTargetPlatform ==
-             port_internal::PlatformType::kAndroid ||
-         port_internal::kTargetPlatform ==
-             port_internal::PlatformType::kChromeOS;
+             port_internal::PlatformType::kAndroid;
 }
 
 // The build target is Android.
@@ -151,12 +146,6 @@ constexpr bool TargetIsIPhone() {
 // The build target is WASM.
 constexpr bool TargetIsWASM() {
   return port_internal::kTargetPlatform == port_internal::PlatformType::kWASM;
-}
-
-// The build target is ChromeOS.
-constexpr bool TargetIsChromeOS() {
-  return port_internal::kTargetPlatform ==
-         port_internal::PlatformType::kChromeOS;
 }
 
 }  // namespace mozc

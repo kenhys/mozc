@@ -34,7 +34,6 @@
 #include <istream>
 #include <memory>
 #include <string>
-#include <utility>
 
 #include "base/clock.h"
 #include "base/config_file_stream.h"
@@ -46,8 +45,6 @@
 #include "base/system_util.h"
 #include "base/version.h"
 #include "protocol/config.pb.h"
-#include "absl/base/thread_annotations.h"
-#include "absl/strings/str_format.h"
 #include "absl/strings/string_view.h"
 #include "absl/synchronization/mutex.h"
 #include "absl/time/time.h"
@@ -56,9 +53,9 @@ namespace mozc {
 namespace config {
 namespace {
 
-constexpr absl::string_view kFileNamePrefix = "user://config";
+constexpr char kFileNamePrefix[] = "user://config";
 
-void AddCharacterFormRule(const absl::string_view group,
+void AddCharacterFormRule(const char *group,
                           const Config::CharacterForm preedit_form,
                           const Config::CharacterForm conversion_form,
                           Config *config) {
@@ -77,35 +74,36 @@ bool GetPlatformSpecificDefaultEmojiSetting() {
   return use_emoji_conversion_default;
 }
 
-class ConfigHandlerImpl final {
+class ConfigHandlerImpl {
  public:
-  ConfigHandlerImpl()
-      :  // <user_profile>/config1.db
-        filename_(absl::StrFormat("%s%d.db", kFileNamePrefix, kConfigVersion)) {
+  ConfigHandlerImpl() {
+    // <user_profile>/config1.db
+    filename_ = kFileNamePrefix;
+    filename_ += std::to_string(CONFIG_VERSION);
+    filename_ += ".db";
     Reload();
     ConfigHandler::GetDefaultConfig(&default_config_);
   }
-
-  void GetConfig(Config *config) const ABSL_LOCKS_EXCLUDED(mutex_);
-  std::unique_ptr<config::Config> GetConfig() const ABSL_LOCKS_EXCLUDED(mutex_);
+  virtual ~ConfigHandlerImpl() = default;
+  void GetConfig(Config *config) const;
+  std::unique_ptr<config::Config> GetConfig() const;
   const Config &DefaultConfig() const;
-  void SetConfig(const Config &config) ABSL_LOCKS_EXCLUDED(mutex_);
-  void Reload() ABSL_LOCKS_EXCLUDED(mutex_);
-  void SetConfigFileName(absl::string_view filename)
-      ABSL_LOCKS_EXCLUDED(mutex_);
-  const std::string &GetConfigFileName() ABSL_LOCKS_EXCLUDED(mutex_);
+  void SetConfig(const Config &config);
+  void Reload();
+  void SetConfigFileName(absl::string_view filename);
+  std::string GetConfigFileName();
 
  private:
   // copy config to config_ and do some
   // platform dependent hooks/rewrites
-  void SetConfigInternal(Config config) ABSL_EXCLUSIVE_LOCKS_REQUIRED(mutex_);
-  void ReloadUnlocked() ABSL_EXCLUSIVE_LOCKS_REQUIRED(mutex_);
+  void SetConfigInternal(const Config &config);
+  void ReloadUnlocked();
 
-  std::string filename_ ABSL_GUARDED_BY(mutex_);
-  Config config_ ABSL_GUARDED_BY(mutex_);
+  std::string filename_;
+  Config config_;
   Config default_config_;
   mutable absl::Mutex mutex_;
-  uint64_t stored_config_hash_ ABSL_GUARDED_BY(mutex_) = 0;
+  uint64_t stored_config_hash_ = 0;
 };
 
 ConfigHandlerImpl *GetConfigHandlerImpl() {
@@ -129,8 +127,8 @@ const Config &ConfigHandlerImpl::DefaultConfig() const {
 }
 
 // set config and rewrite internal data
-void ConfigHandlerImpl::SetConfigInternal(Config config) {
-  config_ = std::move(config);
+void ConfigHandlerImpl::SetConfigInternal(const Config &config) {
+  config_ = config;
 
 #ifdef MOZC_NO_LOGGING
   // Delete the optional field from the config.
@@ -180,15 +178,15 @@ void ConfigHandlerImpl::SetConfig(const Config &config) {
   ConfigFileStream::AtomicUpdate(filename_, output_config.SerializeAsString());
 
 #ifdef DEBUG
-  std::string debug_content = absl::StrCat(
+  std::string debug_content(
       "# This is a text-based config file for debugging.\n"
-      "# Nothing happens when you edit this file manually.\n",
-      output_config.DebugString());
+      "# Nothing happens when you edit this file manually.\n");
+  debug_content += output_config.DebugString();
   ConfigFileStream::AtomicUpdate(absl::StrCat(filename_, ".txt"),
                                  debug_content);
 #endif  // DEBUG
 
-  SetConfigInternal(std::move(output_config));
+  SetConfigInternal(output_config);
 }
 
 // Reload from file
@@ -210,7 +208,7 @@ void ConfigHandlerImpl::ReloadUnlocked() {
   }
 
   // we set default config when file is broken
-  SetConfigInternal(std::move(input_proto));
+  SetConfigInternal(input_proto);
 }
 
 void ConfigHandlerImpl::SetConfigFileName(const absl::string_view filename) {
@@ -220,7 +218,7 @@ void ConfigHandlerImpl::SetConfigFileName(const absl::string_view filename) {
   ReloadUnlocked();
 }
 
-const std::string &ConfigHandlerImpl::GetConfigFileName() {
+std::string ConfigHandlerImpl::GetConfigFileName() {
   absl::MutexLock lock(&mutex_);
   return filename_;
 }
@@ -244,8 +242,8 @@ void ConfigHandler::GetDefaultConfig(Config *config) {
   config->Clear();
   config->set_session_keymap(ConfigHandler::GetDefaultKeyMap());
 
-  constexpr Config::CharacterForm kFullWidth = Config::FULL_WIDTH;
-  constexpr Config::CharacterForm kLastForm = Config::LAST_FORM;
+  const Config::CharacterForm kFullWidth = Config::FULL_WIDTH;
+  const Config::CharacterForm kLastForm = Config::LAST_FORM;
   // "ア"
   AddCharacterFormRule("ア", kFullWidth, kFullWidth, config);
   AddCharacterFormRule("A", kFullWidth, kLastForm, config);
@@ -284,14 +282,14 @@ void ConfigHandler::SetConfigFileName(const absl::string_view filename) {
   GetConfigHandlerImpl()->SetConfigFileName(filename);
 }
 
-const std::string &ConfigHandler::GetConfigFileName() {
+std::string ConfigHandler::GetConfigFileName() {
   return GetConfigHandlerImpl()->GetConfigFileName();
 }
 
 // static
 void ConfigHandler::SetMetaData(Config *config) {
   GeneralConfig *general_config = config->mutable_general_config();
-  general_config->set_config_version(kConfigVersion);
+  general_config->set_config_version(CONFIG_VERSION);
   general_config->set_last_modified_time(
       absl::ToUnixSeconds(Clock::GetAbslTime()));
   general_config->set_last_modified_product_version(Version::GetMozcVersion());
@@ -299,13 +297,13 @@ void ConfigHandler::SetMetaData(Config *config) {
 }
 
 Config::SessionKeymap ConfigHandler::GetDefaultKeyMap() {
-  if constexpr (TargetIsOSX()) {
-    return config::Config::KOTOERI;
-  } else if constexpr (TargetIsChromeOS()) {
-    return config::Config::CHROMEOS;
-  } else {
-    return config::Config::MSIME;
-  }
+#if defined(__APPLE__)
+  return config::Config::KOTOERI;
+#elif defined(OS_CHROMEOS)  // __APPLE__
+  return config::Config::CHROMEOS;
+#else   // __APPLE__ or OS_CHROMEOS
+  return config::Config::MSIME;
+#endif  // __APPLE__ or OS_CHROMEOS
 }
 
 }  // namespace config
