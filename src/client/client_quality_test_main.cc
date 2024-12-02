@@ -167,7 +167,7 @@ std::optional<double> CalculateBleu(client::Client &client,
   for (const commands::KeyEvent &key : *keys) {
     client.SendKey(key, &output);
   }
-  VLOG(2) << "Server response: " << protobuf::Utf8Format(output);
+  VLOG(2) << "Server response: " << output.Utf8DebugString();
 
   // Calculate score
   std::string expected_normalized =
